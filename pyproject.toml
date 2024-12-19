@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bhCal"
+version =  '2024.0.0'
+requires-python = '>=3.11'
+authors = [
+    {name='Tim Hill', email='tha111@sfu.ca'}
+]
+readme = 'README.md'
+license = {file='LICENSE'}
+
+[tool.setuptools]
+packages = ["utils"]
