@@ -50,7 +50,7 @@ def main(train_config, synth_config, bh_config, bh_data):
     simnum = 90
     tt = np.arange(365)
 
-    bh_record = np.loadtxt(bh_config['path'], delimiter=',')
+    bh_record = np.loadtxt(bh_data['path'], delimiter=',')
     obs_days, Y_obs = bh_record[:199].T
     Y_obs = Y_obs.astype(np.float32)
     # Correct for leap day missing from the model and make zero-indexed
