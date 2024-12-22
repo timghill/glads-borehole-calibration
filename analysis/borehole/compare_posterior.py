@@ -36,9 +36,9 @@ def main(train_config, synth_config, bh_config, bh_data):
     S_synth = np.load(synth_config.Y_physical.replace('ff', 'S'), mmap_mode='r').T
     S_bh = np.load(bh_config.Y_physical.replace('ff', 'S'), mmap_mode='r').T
 
-    Q_prior = np.load(train_config.Y_physical.replace('ff', 'Q'), mmap_mode='r').T
-    Q_synth = np.load(synth_config.Y_physical.replace('ff', 'Q'), mmap_mode='r').T
-    Q_bh = np.load(bh_config.Y_physical.replace('ff', 'Q'), mmap_mode='r').T
+    #Q_prior = np.load(train_config.Y_physical.replace('ff', 'Q'), mmap_mode='r').T
+    #Q_synth = np.load(synth_config.Y_physical.replace('ff', 'Q'), mmap_mode='r').T
+    #Q_bh = np.load(bh_config.Y_physical.replace('ff', 'Q'), mmap_mode='r').T
 
     mesh = np.load(train_config.mesh, allow_pickle=True)
     mtri = Triangulation(mesh['x']/1e3, mesh['y']/1e3, mesh['elements']-1)
@@ -150,6 +150,8 @@ def main(train_config, synth_config, bh_config, bh_data):
     axs_hist[0].bar(synthBins[:-1], synthCounts, width=postBins[1]-postBins[0],
         label='Calibrated', color='r', 
         alpha=2./3., edgecolor='#222222', align='edge', linewidth=0.5)
+
+    axs_hist[0].axvline(S_tot_prior[90], color='b', label='True')
 
     axs_hist[1].bar(priorBins[:-1], priorCounts, width=priorBins[1]-priorBins[0], 
         label='Prior', color='gray', 
