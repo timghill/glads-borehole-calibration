@@ -54,9 +54,9 @@ with open('../issm/issm/data/yang2016_moulins/moulins_catchments_YS16.pkl', 'rb'
     moulin_indices = np.array([basin['moulin'] for basin in basins])
 
 # Simulations
-train_config = tools.import_config('../analysis/synthetic_numerics/train_config.py')
+train_config = tools.import_config('../train_config.py')
 train_config.m = 256
-test_config = tools.import_config('../analysis/synthetic_numerics/test_config.py')
+test_config = tools.import_config('../test_config.py')
 # Read in the ensemble of simulations
 Y_sim_phys = np.load(train_config.Y_physical, mmap_mode='r').T[:train_config.m]
 Y_test = np.load(test_config.Y_physical, mmap_mode='r').T
@@ -314,6 +314,8 @@ for ax in (axt1, axt2):
     ax.set_xlim([0, 365])
     ax.set_xlabel('Day of 2012')
     ax.axvline(tt[tstep], color='k', linestyle='dashed')
+
+axt2.set_ylim([0.85, 1.05])
 
 axt1.legend(handles=(h1[0], h2[0]), loc='upper right', frameon=True)
 axt2.set_yticklabels([])
