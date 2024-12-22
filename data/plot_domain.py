@@ -85,7 +85,7 @@ fig = plt.figure(figsize=(7, 6.5))
 
 dx = 10
 gs = GridSpec(2, 5,
-    hspace=0.2, left=0.025, bottom=0.06, right=0.95, top=0.75,
+    hspace=0.2, wspace=0.45, left=0.025, bottom=0.06, right=0.95, top=0.75,
     height_ratios=(5/7, 2/7), width_ratios=(dx, 100, dx, 100, dx))
 ax1 = fig.add_subplot(gs[0,:-1])
 ax2 = ax1.inset_axes((0.35, 0.75, 0.8, 0.8))
@@ -315,10 +315,11 @@ for ax in (axt1, axt2):
     ax.set_xlabel('Day of 2012')
     ax.axvline(tt[tstep], color='k', linestyle='dashed')
 
-axt2.set_ylim([0.85, 1.05])
+axt2.set_ylim([0.8, 1.05])
+axt2.set_yticks([0.8, 0.85, 0.9, 0.95, 1.0, 1.05])
 
 axt1.legend(handles=(h1[0], h2[0]), loc='upper right', frameon=True)
-axt2.set_yticklabels([])
+# axt2.set_yticklabels([])
 axt1.set_ylabel('Fraction of overburden')
 
 axt1.set_title('Synthetic data')
