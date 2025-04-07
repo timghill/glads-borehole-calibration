@@ -104,13 +104,13 @@ def main(train_config, bh_config, p, m, nsamples, nburn):
     #     ax.set_visible(False)
     for i in range(8):
         ax = axs.flat[i]
-        density = scipy.stats.gaussian_kde(thetas[nburn:, i])
-        xpdf = np.linspace(0, 1, 21)
-        pdf = density(xpdf)
-        ax.axhline(1., color='k', linestyle='dashed', label='Prior')
-        ax.plot(xpdf, pdf, label='Posterior', color='red')
-        if t_true is not None:
-            ax.axvline(t_true[i], label='Target', color='blue')
+        # density = scipy.stats.gaussian_kde(thetas[nburn:, i])
+        # xpdf = np.linspace(0, 1, 21)
+        # pdf = density(xpdf)
+        # ax.axhline(1., color='k', linestyle='dashed', label='Prior')
+        # ax.plot(xpdf, pdf, label='Posterior', color='red')
+        # if t_true is not None:
+            # ax.axvline(t_true[i], label='Target', color='blue')
         ax.grid(linestyle=':')
         # ax.yaxis.tick_right()
         ax.set_xlim([0, 1])
@@ -120,16 +120,42 @@ def main(train_config, bh_config, p, m, nsamples, nburn):
         ax.set_ylim([0, 5])
         ax.set_yticks([0, 2, 4])
         # ax.set_xlabel(labels[i], labelpad=0)
-        ax.text(0.5, -0.1, labels[i] + '\n' + train_config.theta_names[i], ha='center', va='top',
+        ax.text(0.5, -0.1, train_config.theta_names[i], ha='center', va='top',
             transform=ax.transAxes)
+        ax.set_title(labels[i])
     
     for ax in axs[:, 0]:
         ax.set_ylabel('Density')
     
     axs[0,0].legend(bbox_to_anchor=(0,1,1,0.3), loc='lower left', ncols=3, frameon=False)
-    fig.subplots_adjust(left=0.1, right=0.95, bottom=0.1, top=0.925, hspace=0.5)
-    
-    fig.savefig('figures/thetas_posterior_minimal.png', dpi=400)
+    fig.subplots_adjust(left=0.1, right=0.95, bottom=0.0825, top=0.925, hspace=0.65)
+
+    fig.savefig('figures/thetas_posterior_minimal_00.png', dpi=400)
+
+    for i in range(8):
+        ax = axs.flat[i]
+        ax.axhline(1., color='k', linestyle='dashed', label='Prior')
+    leg = axs[0,0].legend(bbox_to_anchor=(0,1.2,1,0.3), loc='lower left', ncols=3, frameon=False)
+    fig.savefig('figures/thetas_posterior_minimal_01.png', dpi=400)
+    leg.remove()
+
+    for i in range(8):
+        ax = axs.flat[i]
+        if t_true is not None:
+            ax.axvline(t_true[i], label='Target', color='blue')
+    leg = axs[0,0].legend(bbox_to_anchor=(0,1.2,1,0.3), loc='lower left', ncols=3, frameon=False)
+    fig.savefig('figures/thetas_posterior_minimal_02.png', dpi=400)
+    leg.remove()
+
+    for i in range(8):
+        ax = axs.flat[i]
+        density = scipy.stats.gaussian_kde(thetas[nburn:, i])
+        xpdf = np.linspace(0, 1, 21)
+        pdf = density(xpdf)
+        ax.plot(xpdf, pdf, label='Posterior', color='red')
+    leg = axs[0,0].legend(bbox_to_anchor=(0,1.2,1,0.3), loc='lower left', ncols=3, frameon=False)
+    fig.savefig('figures/thetas_posterior_minimal_03.png', dpi=400)
+    leg.remove()
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()
