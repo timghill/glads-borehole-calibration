@@ -154,7 +154,7 @@ for ax in (ax1, ax2):
         marker='o', color='w', markersize=ms/2, linestyle='', label='Moulins',
         markeredgecolor='k', linewidth=0.5)
     handle_outlets = ax.plot(mesh['x'][pos]/1e3, mesh['y'][pos]/1e3, linestyle='',
-        marker='*', color='k', markersize=ms/1.5, label=r'$p_{\rm{w}}=0$ outlets')
+        marker='*', color='r', markersize=ms/1.5, label=r'$p_{\rm{w}}=0$ outlets')
     # ax.plot(aws_xy[0]/1e3, aws_xy[1]/1e3, '^', markersize=ms/1.5, label='KAN_L AWS', color='m')
     handle_borehole = ax.plot(bh_xy[0]/1e3, bh_xy[1]/1e3, '^', 
         markersize=ms, label='Borehole GL12-2A', color='b', 

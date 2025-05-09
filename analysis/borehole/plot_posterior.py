@@ -13,6 +13,8 @@ matplotlib.rc('font', size=8)
 from matplotlib import pyplot as plt
 from matplotlib.tri import Triangulation
 from matplotlib.gridspec import GridSpec
+from matplotlib.patches import Rectangle, Polygon
+from matplotlib.collections import PatchCollection, LineCollection
 from matplotlib import cm
 
 import cmocean
@@ -101,11 +103,18 @@ def main(train_config, post_config, bh_config):
     ax2.set_xlim([160, 320])
     fig.subplots_adjust(bottom=0.08, top=0.9, left=0.08, right=0.975, hspace=0.2)
 
+
+    rect = Rectangle(xy=(160, 0.8), width=(320-160), height=(1.2-0.8))
+    pc = PatchCollection([rect], facecolor='none', edgecolor='k',
+        linestyle='dashed', linewidth=0.5)
+    ax1.add_collection(pc)
+    ax1.text(320-2, 1.2-0.02, '(b)', 
+        ha='right', va='top')
+
     ax1.text(0.0125, 0.925, '(a)', transform=ax1.transAxes, fontweight='bold')
     ax2.text(0.0125, 0.925, '(b)', transform=ax2.transAxes, fontweight='bold')
 
     fig.savefig('figures/post_glads_timeseries.png', dpi=400)
-
 
     fig,ax = plt.subplots()
     err = Y_post_mean[obs_days] - Y_obs
