@@ -103,7 +103,7 @@ tstep = 230
 for ax in (ax1, ax2):
     sc = ax.tripcolor(triangulation, ff_arr[:, tstep, m_median],
         vmin=0, vmax=1, cmap=cmocean.cm.dense, edgecolor='#888888',
-        linewidth=0.1, alpha=0.9)
+        linewidth=0.1, alpha=0.9, rasterized=True)
     ax.tricontour(triangulation, surf.squeeze(), levels=(1700,), 
         # colors=[cmocean.cm.algae(0.4)], linestyle='dashed',
         colors=['#aaaaaa'], linestyles='dashed',
@@ -246,7 +246,7 @@ outline = np.loadtxt('../issm/issm/data/geom/IS_outline.csv', skiprows=1, quotec
 # ax3.plot(outline[:, 1]/1e3, outline[:, 2]/1e3)
 xy = np.array([outline[:, 1], outline[:, 2]]).T
 ax3.tripcolor(triangulation, thick.flatten(), vmin=0, vmax=2500, cmap=cmocean.cm.ice_r,
-        edgecolor='none')
+        edgecolor='none', rasterized=True)
 pg = Polygon(xy[::10]/1e3, closed=True, facecolor='none', edgecolor='b', linewidth=1)
 ax3.add_patch(pg)
 ax3.set_facecolor('none')
@@ -345,3 +345,4 @@ fig.text(0.025, 0.675, '(c)', fontweight='bold',
     va='bottom', ha='left')
 
 fig.savefig('greenland_domain_summary.png', dpi=400)
+fig.savefig('greenland_domain_summary.pdf', dpi=400)
