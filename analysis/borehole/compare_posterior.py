@@ -151,7 +151,7 @@ def main(train_config, synth_config, bh_config, bh_data):
         label='Calibrated', color='r', 
         alpha=2./3., edgecolor='#222222', align='edge', linewidth=0.5)
 
-    axs_hist[0].axvline(S_tot_prior[90], color='b', label='True')
+    axs_hist[0].axvline(12714700.234662913, color='b', label='True')
 
     axs_hist[1].bar(priorBins[:-1], priorCounts, width=priorBins[1]-priorBins[0], 
         label='Prior', color='gray', 
