@@ -112,6 +112,7 @@ def main(config, models, burn=500):
         hspace=0.3, wspace=0.22)
 
     fig.savefig('figures/separate_calibration.png', dpi=400)
+    fig.savefig('figures/separate_calibration.pdf', dpi=400)
 
 
 if __name__=='__main__':

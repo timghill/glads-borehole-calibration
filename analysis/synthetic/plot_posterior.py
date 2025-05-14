@@ -75,6 +75,7 @@ def main(train_config, test_config, post_config, bh_config):
     fig.subplots_adjust(bottom=0.15, top=0.8, left=0.08, right=0.975)
 
     fig.savefig('figures/post_glads_timeseries.png', dpi=400)
+    fig.savefig('figures/post_glads_timeseries.pdf')
 
     fig,ax = plt.subplots()
     err = Y_post_mean - Y_obs_phys

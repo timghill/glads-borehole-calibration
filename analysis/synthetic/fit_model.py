@@ -84,6 +84,8 @@ def main(train_config, test_config, bh_config, p, m,
     figs[0][0].savefig(figdir + '03_theta_mcmc_samples_m{:03d}_p{:02d}.png'.format(train_config.m, train_config.p), dpi=600)
     figs[1][0].savefig(figdir + '04_theta_posterior_distributions_m{:03d}_p{:02d}.png'.format(train_config.m, train_config.p), 
         dpi=400)
+    figs[1][0].savefig(figdir + '04_theta_posterior_distributions_m{:03d}_p{:02d}.pdf'.format(train_config.m, train_config.p), 
+        dpi=400)
 
     fig,ax = figs[2]
     ax.set_xlim([120, 300])

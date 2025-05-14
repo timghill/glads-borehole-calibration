@@ -115,6 +115,7 @@ def main(train_config, post_config, bh_config):
     ax2.text(0.0125, 0.925, '(b)', transform=ax2.transAxes, fontweight='bold')
 
     fig.savefig('figures/post_glads_timeseries.png', dpi=400)
+    fig.savefig('figures/post_glads_timeseries.pdf', dpi=400)
 
     fig,ax = plt.subplots()
     err = Y_post_mean[obs_days] - Y_obs
@@ -209,7 +210,7 @@ def main(train_config, post_config, bh_config):
             lscale = 1 if k==0 else 3
             ax = axs[i,k]
             pc = ax.tripcolor(mtri, Y_vals[i], cmap=cmap,
-                vmin=0, vmax=1.5, alpha=0.6)
+                vmin=0, vmax=1.5, alpha=0.6, rasterized=True)
             ax.plot(mesh['x'][nodenum]/1e3, mesh['y'][nodenum]/1e3, 'b^', markeredgecolor='w',
                 linewidth=0.25, zorder=3)
             ax.set_aspect('equal')
@@ -265,6 +266,7 @@ def main(train_config, post_config, bh_config):
             fontweight='bold')
     
     fig.savefig('figures/post_mean_channel_maps.png', dpi=400)
+    fig.savefig('figures/post_mean_channel_maps.pdf', dpi=400)
 
     
 

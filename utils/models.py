@@ -128,7 +128,7 @@ def plot_model(model, nburn, train_config, Y_sim, Y_obs, Y_ind_obs,
             xx1,xx2 = np.meshgrid(x1,x2)
             xq = np.array([xx1.flatten(), xx2.flatten()])
             zz = kdei(xq).reshape(xx1.shape)
-            ax.pcolormesh(xx1, xx2, zz, cmap=cmocean.cm.amp, vmin=0)
+            ax.pcolormesh(xx1, xx2, zz, cmap=cmocean.cm.amp, vmin=0, rasterized=True)
             if t_true is not None:
                 ax.plot(t_true[col], t_true[row], 'b+', markeredgewidth=2.5, markeredgecolor='w', markersize=10)
                 ax.plot(t_true[col], t_true[row], 'b+', markeredgewidth=1.5, markeredgecolor='b', markersize=10)

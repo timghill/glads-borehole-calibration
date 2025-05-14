@@ -105,11 +105,11 @@ def main(train_config, synth_config, bh_config, bh_data):
     cnorm = matplotlib.colors.Normalize(vmin=-2, vmax=0)
     delta = np.log10(1e-4 + np.abs(map_qq_prior[-1]-map_qq_prior[0]))
     mpbl = axs_maps[0].tripcolor(mtri, delta,
-        cmap=cmocean.cm.rain, norm=cnorm)
+        cmap=cmocean.cm.rain, norm=cnorm, rasterized=True)
     axs_maps[1].tripcolor(mtri, np.log10(map_qq_synth[-1]-map_qq_synth[0]),
-        cmap=cmocean.cm.rain, norm=cnorm)
+        cmap=cmocean.cm.rain, norm=cnorm, rasterized=True)
     axs_maps[2].tripcolor(mtri, np.log10(map_qq_bh[-1]-map_qq_bh[0]),
-        cmap=cmocean.cm.rain, norm=cnorm)
+        cmap=cmocean.cm.rain, norm=cnorm, rasterized=True)
     for ax in axs_maps[1:]:
         ax.plot(bh_x, bh_y, 'b^', markeredgecolor='w', linewidth=0.5,
             label='GL12-2A')
@@ -198,6 +198,7 @@ def main(train_config, synth_config, bh_config, bh_data):
     axs_hist[1].legend(loc='upper right', title='Borehole')
     
     fig.savefig('figures/posterior_comparison.png', dpi=400)
+    fig.savefig('figures/posterior_comparison.pdf', dpi=400)
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser()

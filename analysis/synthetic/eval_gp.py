@@ -62,6 +62,7 @@ def eval_emulator(train_config, test_config, bh_config, m, p):
     fig.subplots_adjust(left=0.1, bottom=0.1, top=0.9, right=0.95,
         hspace=0.15)
     fig.savefig('figures/gp_timeseries.png', dpi=400)
+    fig.savefig('figures/gp_timeseries.pdf')
 
     return
 

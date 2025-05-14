@@ -14,4 +14,4 @@ python -u plot_separate_calibration.py $train data/model_m512_p12.pkl data/summe
 
 # Posterior predictions
 python -u plot_posterior.py $train ../../post_borehole_config.py $bh
-python -u compare_posterior.py $train ../../post_borehole_config.py ../../post_borehole_config.py $bh
+python -u compare_posterior.py $train ../../post_synthetic_config.py ../../post_borehole_config.py $bh
