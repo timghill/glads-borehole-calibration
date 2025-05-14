@@ -87,10 +87,10 @@ def main(train_config, test_config, bh_config, p, m,
     figs[1][0].savefig(figdir + '04_theta_posterior_distributions_m{:03d}_p{:02d}.pdf'.format(train_config.m, train_config.p), 
         dpi=400)
 
-    fig,ax = figs[2]
-    ax.set_xlim([120, 300])
-    fig.savefig(figdir + '05_ypred_posterior_predictions_m{:03d}_p{:02d}.png'.format(train_config.m, train_config.p), 
-        dpi=400)
+    # fig,ax = figs[2]
+    # ax.set_xlim([120, 300])
+    # fig.savefig(figdir + '05_ypred_posterior_predictions_m{:03d}_p{:02d}.png'.format(train_config.m, train_config.p), 
+    #     dpi=400)
 
 
 

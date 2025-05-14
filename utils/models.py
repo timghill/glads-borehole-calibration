@@ -216,44 +216,46 @@ def plot_model(model, nburn, train_config, Y_sim, Y_obs, Y_ind_obs,
     else:
         eta_pred = np.load('data/pred/eta_m{:03d}_p{:02d}.npy'.format(m, p))
     y_mean = np.mean(eta_pred, axis=0).squeeze()
-    print('Computing quantiles...')
-    y_lower0 = np.quantile(eta_pred, 0.025, axis=0).squeeze()
-    y_lower1 = np.quantile(eta_pred, 0.25, axis=0).squeeze()
-    y_upper0 = np.quantile(eta_pred, 0.975, axis=0).squeeze()
-    y_upper1 = np.quantile(eta_pred, 0.75, axis=0).squeeze()
-    print('Done quantiles')
+    # print('Computing quantiles...')
+    # y_lower0 = np.quantile(eta_pred, 0.025, axis=0).squeeze()
+    # y_lower1 = np.quantile(eta_pred, 0.25, axis=0).squeeze()
+    # y_upper0 = np.quantile(eta_pred, 0.975, axis=0).squeeze()
+    # y_upper1 = np.quantile(eta_pred, 0.75, axis=0).squeeze()
+    # print('Done quantiles')
         
-    prior_lower = np.quantile(Y_sim, 0.025, axis=0).squeeze()
-    prior_upper = np.quantile(Y_sim, 0.975, axis=0).squeeze()
+    # prior_lower = np.quantile(Y_sim, 0.025, axis=0).squeeze()
+    # prior_upper = np.quantile(Y_sim, 0.975, axis=0).squeeze()
 
-    print('Plotting calibrated model')
-    fig, ax = plt.subplots(figsize=(6, 3))
-    h1 = ax.plot(Y_ind_obs, Y_sim[:, :].T, color='gray', 
-        linewidth=0.3, label='Ensemble', zorder=2, alpha=0.25)
-    f0 = ax.fill_between(Y_ind_obs, prior_lower[:], prior_upper[:], 
-        label='Prior 95% interval', zorder=1, color='gray', 
-        edgecolor='none', alpha=0.25)
-    h2 = ax.plot(Y_ind_obs, Y_obs.squeeze(), color='blue', 
-        label=label, zorder=2)
-    h3 = ax.plot(Y_ind_obs, y_mean[:].squeeze(), color='red', 
-        label='Calibrated model mean', zorder=2)
-    f1 = ax.fill_between(Y_ind_obs, y_lower0[:], y_upper0[:], 
-        color='red', label='Calibrated model 95% interval', 
-            alpha=0.3, zorder=1, edgecolor='none')
-    # f2 = ax.fill_between(Y_ind_obs, y_lower1[:], y_upper1[:], 
-    #     color='firebrick', label='Calibrated model 50% interval', 
-    #     alpha=0.4, zorder=1, edgecolor='none')
-    ax.grid(linestyle=':', zorder=0)
-    ax.legend(handles=(h1[0], f0, h3[0], f1, h2[0]), 
-        bbox_to_anchor=(-0.05,1,1,0.2), loc='lower left', frameon=False, ncols=3)
-    ax.set_ylabel('Flotation fraction')
-    ax.set_xlabel('Day of year')
-    ax.set_xlim([Y_ind_obs[0], Y_ind_obs[-1]])
-    ax.set_ylim([0, 2.])
-    fig.subplots_adjust(bottom=0.15, top=0.8, left=0.11, right=0.975)
-    # fig.savefig('figures/05_ypred_posterior_predictions_m{:03d}_p{:02d}.png'.format(m, p),
-    #     dpi=600)
-    print('Done calibrated model')
-    figaxs.append((fig,ax))
+    # print('Plotting calibrated model')
+    # print('Yind_obs:', Y_ind_obs.shape)
+    # print('y_mean:', y_mean.shape)
+    # fig, ax = plt.subplots(figsize=(6, 3))
+    # h1 = ax.plot(Y_ind_obs, Y_sim[:, :].T, color='gray', 
+    #     linewidth=0.3, label='Ensemble', zorder=2, alpha=0.25)
+    # f0 = ax.fill_between(Y_ind_obs, prior_lower[:], prior_upper[:], 
+    #     label='Prior 95% interval', zorder=1, color='gray', 
+    #     edgecolor='none', alpha=0.25)
+    # h2 = ax.plot(Y_ind_obs, Y_obs.squeeze(), color='blue', 
+    #     label=label, zorder=2)
+    # h3 = ax.plot(Y_ind_obs, y_mean[:].squeeze(), color='red', 
+    #     label='Calibrated model mean', zorder=2)
+    # f1 = ax.fill_between(Y_ind_obs, y_lower0[:], y_upper0[:], 
+    #     color='red', label='Calibrated model 95% interval', 
+    #         alpha=0.3, zorder=1, edgecolor='none')
+    # # f2 = ax.fill_between(Y_ind_obs, y_lower1[:], y_upper1[:], 
+    # #     color='firebrick', label='Calibrated model 50% interval', 
+    # #     alpha=0.4, zorder=1, edgecolor='none')
+    # ax.grid(linestyle=':', zorder=0)
+    # ax.legend(handles=(h1[0], f0, h3[0], f1, h2[0]), 
+    #     bbox_to_anchor=(-0.05,1,1,0.2), loc='lower left', frameon=False, ncols=3)
+    # ax.set_ylabel('Flotation fraction')
+    # ax.set_xlabel('Day of year')
+    # ax.set_xlim([Y_ind_obs[0], Y_ind_obs[-1]])
+    # ax.set_ylim([0, 2.])
+    # fig.subplots_adjust(bottom=0.15, top=0.8, left=0.11, right=0.975)
+    # # fig.savefig('figures/05_ypred_posterior_predictions_m{:03d}_p{:02d}.png'.format(m, p),
+    # #     dpi=600)
+    # print('Done calibrated model')
+    # figaxs.append((fig,ax))
 
     return figaxs
