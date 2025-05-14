@@ -1,37 +1,44 @@
-# Bayesian calibration of subglacial drainage model using borehole water pressure timeseries data
-
-Tim Hill, 2024 (tim_hill_2@sfu.ca)
-https://github.com/timghill/GladsGP/blob/main/README.md
+# GlaDS borehole calibration
 
 
-Code corresponding to "Emulator-based Bayesian calibration of a subglacial drainage model".
+Tim Hill, 2025 (tim_hill_2@sfu.ca)
+https://github.com/timghill/glads-borehole-calibration
 
-This project calibrates parameters of the Glacier Drainage System (GlaDS) model ([Werder et al., 2013](https://doi.org/10.1002/jgrf.20146)) with borehole water-pressure timeseries ([Meierbachtol et al.,  2013](https://doi.org/10.1126/science.1235905); [Wright et al., 2016](https://doi.org/10.1002/2016JF003819)) using Gaussian process-based Bayesian inference.
+Code corresponding to "Emulator-based Bayesian calibration of a subglacial drainage model". This project uses a Gaussian Process emulator and borehole hydraulic head measurements to calibrate 8 uncertain parameters of the Glacier Drainage System (GlaDS) model ([Werder et al., 2013](https://doi.org/10.1002/jgrf.20146)). This repository consists of code to run the GlaDS simulation ensembles, run the MCMC sampling to infer the posterior probability distributions, and make figures for the published paper.
 
 ## Description
 
 The project structure is:
 
- * `utils/`: shared code for setting up and running ISSM simulations and for analyzing outputs
- * `issm/`: GlaDS-ISSM simulation directories
- * `analysis/`: individual directories for analyzing model experiments
+ - `issm/`: ISSM-GlaDS simulation directories
+ - `data/`: Processed daily borehole flotation-fraction measurements
+ - `analysis/`: Calibration experiments sub-directories
+ - `utils/`: Shared code for consistent simulation settings and MCMC sampling
 
-Each directory has a README file to describe the contents. Original datasets used as inputs for ISSM and the original borehole dataset are not included in this repository, see the individual `citation.md` files.
+Each directory has its own `README.md` file that describes the contents in more detail.
 
-## Installation
 
-The analysis source code has been tested against python 3.12.4. Package requirements are listed in `requirements.txt`, and it is recommended to use a virtual environment to manage versions. For example
+## Requirements
+
+Running these scripts requires python 3. The analysis source code has been tested against python 3.12.4. Package requirements are listed in `requirements.txt`, and it is recommended to use a virtual environment to manage versions. For example
 
 ```
-virtualenv --python 3.12 pyenv/
+virtualenv --python 3.12.4 pyenv/
 source pyenv/bin/activate
 pip install -r requirements.txt
 ```
 
-To install the code for this project on your python path, install in editable (`-e`) mode with pip:
+Running ISSM requires a working installation of [ISSM v4.24](https://github.com/ISSMteam/ISSM/releases/tag/v4.24).
+
+This code depends on a fork of the SEPIA package ([timghill/SEPIA](https://github.com/timghill/SEPIA)) that that can be installed using `pip install -e .`.
+
+## Installation
+
+The source code in `utils/` is installed as an editable python package. To install this code, use pip with the `-e` option:
 
 ```
 pip install -e .
 ```
 
-This code also depends on a fork of the SEPIA package ([timghill/SEPIA](https://github.com/timghill/SEPIA)) that can be installed using `pip install -e .`, and simulations are run with the Ice-sheet and Sea-level System Model ([ISSM](https://github.com/ISSMteam/ISSM)).
+Your python environment and installation can be verified by running `test_install.sh`. This script should run with no errors and should update two figures in `experiments/synthetic/analysis/figures/`.
+
