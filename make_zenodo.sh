@@ -35,3 +35,7 @@ cp -rv $LIVE/issm/issm/train_numerics $ARCH/issm/issm/
 cp -rv $LIVE/analysis/borehole/data $ARCH/analysis/borehole/data
 cp -rv $LIVE/analysis/leave_one_out/data $ARCH/analysis/leave_one_out/data
 cp -rv $LIVE/analysis/synthetic/data $ARCH/analysis/synthetic/data
+
+# Tar everything
+tar -cvzf ../glads-borehole-calibration.tar.gz *
+

@@ -101,9 +101,11 @@ cax2 = ax1.inset_axes((0.4, 0.065, 0.35, 0.03))
 pos = np.array([296, 34, 38])
 tstep = 230
 for ax in (ax1, ax2):
+    ec = '#b0b0b0' if ax is ax2 else 'none'
+    elw = 0.2 if ax is ax2 else 0.1
     sc = ax.tripcolor(triangulation, ff_arr[:, tstep, m_median],
-        vmin=0, vmax=1, cmap=cmocean.cm.dense, edgecolor='#888888',
-        linewidth=0.1, alpha=0.9, rasterized=True)
+        vmin=0, vmax=1, cmap=cmocean.cm.dense, edgecolor=ec,
+        linewidth=elw, alpha=0.9, rasterized=True, antialiased=True)
     ax.tricontour(triangulation, surf.squeeze(), levels=(1700,), 
         # colors=[cmocean.cm.algae(0.4)], linestyle='dashed',
         colors=['#aaaaaa'], linestyles='dashed',
@@ -111,29 +113,30 @@ for ax in (ax1, ax2):
         )
     # ela.set_label('ELA (1700 m asl.)')
     
-    Smin = 1
-    Smax = 200
-    cnorm = matplotlib.colors.Normalize(vmin=Smin, vmax=Smax)
-    lscale = 1 if ax is ax1 else 0.3
-    qlist = np.where(np.abs(Q_arr[:, :, m_median])>Smin)[0]
-    lc_colors = []
-    lc_lw = []
-    lc_xy = []
-    for i in qlist:
-        Qi = np.abs(Q_arr[i, tstep, m_median])
-        # if Qi>Smin:
-        # ax.plot(mesh['x'][mesh['connect_edge'][i,:]]/1e3,
-        #     mesh['y'][mesh['connect_edge'][i,:]]/1e3,
-        #     linewidth=lscale*(0.25+1.25*cnorm(Qi)), 
-        #     color=cmocean.cm.turbid(cnorm(Qi)))
-        x0,x1 = mesh['x'][mesh['connect_edge'][i,:]]/1e3
-        y0,y1 =  mesh['y'][mesh['connect_edge'][i,:]]/1e3
-        lc_xy.append([(x0, y0), (x1, y1)])
-        lc_lw.append(lscale*(0.25+1.25*cnorm(Qi)))
-        lc_colors.append(cmocean.cm.turbid(cnorm(Qi)))
-    lc = LineCollection(lc_xy, colors=lc_colors, linewidths=lc_lw,
-        capstyle='round')
-    ax.add_collection(lc)
+    if ax is ax1:
+        Smin = 1
+        Smax = 200
+        cnorm = matplotlib.colors.Normalize(vmin=Smin, vmax=Smax)
+        lscale = 1 if ax is ax1 else 0.3
+        qlist = np.where(np.abs(Q_arr[:, :, m_median])>Smin)[0]
+        lc_colors = []
+        lc_lw = []
+        lc_xy = []
+        for i in qlist:
+            Qi = np.abs(Q_arr[i, tstep, m_median])
+            # if Qi>Smin:
+            # ax.plot(mesh['x'][mesh['connect_edge'][i,:]]/1e3,
+            #     mesh['y'][mesh['connect_edge'][i,:]]/1e3,
+            #     linewidth=lscale*(0.25+1.25*cnorm(Qi)), 
+            #     color=cmocean.cm.turbid(cnorm(Qi)))
+            x0,x1 = mesh['x'][mesh['connect_edge'][i,:]]/1e3
+            y0,y1 =  mesh['y'][mesh['connect_edge'][i,:]]/1e3
+            lc_xy.append([(x0, y0), (x1, y1)])
+            lc_lw.append(lscale*(0.25+1.25*cnorm(Qi)))
+            lc_colors.append(cmocean.cm.turbid(cnorm(Qi)))
+        lc = LineCollection(lc_xy, colors=lc_colors, linewidths=lc_lw,
+            capstyle='round')
+        ax.add_collection(lc)
 
     # sc = ax.tripcolor(triangulation, thick.flatten(), vmin=0, vmax=2500, cmap=cmocean.cm.ice_r,
     #     edgecolor='#aaaaaa', linewidth=0.1)
@@ -150,9 +153,10 @@ for ax in (ax1, ax2):
         mlw = 1
     ax.set_aspect('equal')
     ax.set_facecolor('none')
-    handle_moulins = ax.plot(mesh['x'][moulin_indices]/1e3, mesh['y'][moulin_indices]/1e3,
-        marker='o', color='w', markersize=ms/2, linestyle='', label='Moulins',
-        markeredgecolor='k', linewidth=0.5)
+    if ax is ax1:
+        handle_moulins = ax.plot(mesh['x'][moulin_indices]/1e3, mesh['y'][moulin_indices]/1e3,
+            marker='o', color='w', markersize=ms/2, linestyle='', label='Moulins',
+            markeredgecolor='k', linewidth=0.5)
     handle_outlets = ax.plot(mesh['x'][pos]/1e3, mesh['y'][pos]/1e3, linestyle='',
         marker='*', color='r', markersize=ms/1.5, label=r'$p_{\rm{w}}=0$ outlets')
     # ax.plot(aws_xy[0]/1e3, aws_xy[1]/1e3, '^', markersize=ms/1.5, label='KAN_L AWS', color='m')
