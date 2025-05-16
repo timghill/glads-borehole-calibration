@@ -136,6 +136,7 @@ for ax in (ax1, ax2):
             lc_colors.append(cmocean.cm.turbid(cnorm(Qi)))
         lc = LineCollection(lc_xy, colors=lc_colors, linewidths=lc_lw,
             capstyle='round')
+        lc.set(rasterized=True)
         ax.add_collection(lc)
 
     # sc = ax.tripcolor(triangulation, thick.flatten(), vmin=0, vmax=2500, cmap=cmocean.cm.ice_r,
