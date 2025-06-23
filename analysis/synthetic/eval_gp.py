@@ -32,7 +32,7 @@ def eval_emulator(train_config, test_config, bh_config, m, p):
     nums = np.array([5, 50, 95])[::-1]
     sim_nums = ix[nums-1]
 
-    alphabet = ['(a)', '(b)', '(c)']
+    alphabet = ['a', 'b', 'c']
     fig,axs = plt.subplots(figsize=(3.5, 4), sharex=True, nrows=3)
     for i in range(3):
         ax = axs[i]
@@ -87,7 +87,7 @@ def eval_emulator_abs(train_config, test_config, bh_config, m, p):
     nums = np.array([5, 50, 95])[::-1]
     sim_nums = ix[nums-1]
 
-    alphabet = ['(a)', '(b)', '(c)']
+    alphabet = ['a', 'b', 'c']
     fig,axs = plt.subplots(figsize=(3.5, 4), sharex=True, nrows=3)
     for i in range(3):
         ax = axs[i]
@@ -141,7 +141,7 @@ def eval_emulator_rel(train_config, test_config, bh_config, m, p):
     nums = np.array([5, 50, 95])[::-1]
     sim_nums = ix[nums-1]
 
-    alphabet = ['(a)', '(b)', '(c)']
+    alphabet = ['a', 'b', 'c']
     fig,axs = plt.subplots(figsize=(3.5, 4), sharex=True, nrows=3)
     for i in range(3):
         ax = axs[i]
@@ -226,7 +226,7 @@ def eval_all_emulators(train_config, test_config, bh_config,
     boxprops = {'edgecolor':'none'}
     medianprops = {'color':'k'}
     flierprops = {'marker':'+', 'markersize':3}
-    alphabet = ['(a)', '(b)']
+    alphabet = ['a', 'b']
     for i in range(3):
         test_rmsei = test_rmse[4*i:4*(i+1)]
         cal_rmsei = cal_rmse[4*i:4*(i+1)]

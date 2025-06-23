@@ -174,11 +174,11 @@ def main(train_config, synth_config, bh_config, bh_data):
         ax.spines[['left', 'right', 'bottom', 'top']].set_visible(False)
         ax.set_xticks([])
         ax.set_yticks([])
-    axs_maps[0].text(0.025, 0.9, '$\\bf{(a)}$ Prior',
+    axs_maps[0].text(0.025, 0.9, '$\\bf{a}$ Prior',
         transform=axs_maps[0].transAxes, ha='left', va='bottom')
-    axs_maps[1].text(0.025, 0.9, '$\\bf{(b)}$ Synthetic',
+    axs_maps[1].text(0.025, 0.9, '$\\bf{b}$ Synthetic',
         transform=axs_maps[1].transAxes, ha='left', va='bottom')
-    axs_maps[2].text(0.025, 0.9, '$\\bf{(c)}$ Borehole',
+    axs_maps[2].text(0.025, 0.9, '$\\bf{c}$ Borehole',
         transform=axs_maps[2].transAxes, ha='left', va='bottom')
 
     for ax in axs_hist:
@@ -190,9 +190,9 @@ def main(train_config, synth_config, bh_config, bh_data):
     axs_hist[0].set_ylabel('Density', labelpad=2)
     axs_hist[1].set_ylabel('Density', labelpad=2)
     axs_hist[1].set_xlabel('Total channel volume (m$^3$)')
-    axs_hist[0].text(0.025, 0.925, '(d)', transform=axs_hist[0].transAxes,
+    axs_hist[0].text(0.025, 0.925, 'd', transform=axs_hist[0].transAxes,
         fontweight='bold')
-    axs_hist[1].text(0.025, 0.925, '(e)', transform=axs_hist[1].transAxes,
+    axs_hist[1].text(0.025, 0.925, 'e', transform=axs_hist[1].transAxes,
         fontweight='bold')
     axs_hist[0].legend(loc='upper right', frameon=True, title='Synthetic')
     axs_hist[1].legend(loc='upper right', title='Borehole')

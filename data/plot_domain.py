@@ -328,25 +328,25 @@ axt1.legend(handles=(h1[0], h2[0]), loc='upper right', frameon=True)
 axt1.set_ylabel('Fraction of overburden')
 
 axt1.set_title('Synthetic data')
-axt1.text(0.025, 0.95, '(d)', transform=axt1.transAxes,
+axt1.text(0.025, 0.95, 'd', transform=axt1.transAxes,
     fontweight='bold', va='top')
 axt2.set_title('Borehole data')
-axt2.text(0.025, 0.95, '(e)', transform=axt2.transAxes,
+axt2.text(0.025, 0.95, 'e', transform=axt2.transAxes,
     fontweight='bold', va='top')
 
 
 
-fig.text(0.025, 0.975, '(a)',
+fig.text(0.025, 0.975, 'a',
     fontweight='bold', va='top', ha='left')
 
-fig.text(0.325, 0.975, '(b)',
+fig.text(0.325, 0.975, 'b',
     fontweight='bold', va='top', ha='left')
 
-ax2.text(xmin+2, ymin+2, '(c)', va='bottom', ha='left', zorder=10)
+ax2.text(xmin+2, ymin+2, 'c', va='bottom', ha='left', zorder=10)
 # ax1.plot(xmaymin+1, 'rx')
 # print(xmin, xmax)
 
-fig.text(0.025, 0.675, '(c)', fontweight='bold',
+fig.text(0.025, 0.675, 'c', fontweight='bold',
     va='bottom', ha='left')
 
 fig.savefig('greenland_domain_summary.png', dpi=400)

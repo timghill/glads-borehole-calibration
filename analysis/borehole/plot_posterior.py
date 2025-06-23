@@ -111,8 +111,8 @@ def main(train_config, post_config, bh_config):
     ax1.text(320-2, 1.2-0.02, '(b)', 
         ha='right', va='top')
 
-    ax1.text(0.0125, 0.925, '(a)', transform=ax1.transAxes, fontweight='bold')
-    ax2.text(0.0125, 0.925, '(b)', transform=ax2.transAxes, fontweight='bold')
+    ax1.text(0.0125, 0.925, 'a', transform=ax1.transAxes, fontweight='bold')
+    ax2.text(0.0125, 0.925, 'b', transform=ax2.transAxes, fontweight='bold')
 
     fig.savefig('figures/post_glads_timeseries.png', dpi=400)
     fig.savefig('figures/post_glads_timeseries.pdf', dpi=400)
@@ -260,7 +260,7 @@ def main(train_config, post_config, bh_config):
         cax.xaxis.tick_top()
         cax.xaxis.set_label_position('top')
     
-    alphabet = ['(a)', '(b)', '(c)', '(d)']
+    alphabet = ['a', 'b', 'c', 'd']
     for i,ax in enumerate(axs.flat):
         ax.text(0.025, 0.9, alphabet[i], transform=ax.transAxes,
             fontweight='bold')
