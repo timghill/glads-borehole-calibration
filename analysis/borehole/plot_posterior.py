@@ -108,7 +108,7 @@ def main(train_config, post_config, bh_config):
     pc = PatchCollection([rect], facecolor='none', edgecolor='k',
         linestyle='dashed', linewidth=0.5)
     ax1.add_collection(pc)
-    ax1.text(320-2, 1.2-0.02, '(b)', 
+    ax1.text(320-2, 1.2-0.02, 'b', 
         ha='right', va='top')
 
     ax1.text(0.0125, 0.925, 'a', transform=ax1.transAxes, fontweight='bold')
